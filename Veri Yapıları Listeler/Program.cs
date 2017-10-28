@@ -48,12 +48,6 @@ namespace Veri_Yapıları_Listeler
                 head = N;
                 tail = N;
             }
-                
-           /* else if (head.next == null)
-            {
-                head.next = N;
-                tail = N;
-            }*/
             else
             {
                 tail.next = N;
@@ -67,14 +61,17 @@ namespace Veri_Yapıları_Listeler
             if (Index < 0 || Index >= count)
                 Console.WriteLine("Yanlis sıra");
             else if (IsEmpty())
-                head = tail = N;
+            {
+                head = N;
+                tail = N;
+            }
             else if (Index == 0)
                 InsertAtFront(N);
             else
             {
                 Node current = head;
 
-                for (int i = 0; i < Index; i++)
+                for (int i = 0; i < (Index - 1); i++)
                     current = current.next;
 
                 N.next = current.next;
@@ -116,7 +113,7 @@ namespace Veri_Yapıları_Listeler
             if (Index < 0 || Index >= count)
                 Console.WriteLine("Yanlis sira");
             else if (IsEmpty())
-                Console.WriteLine("Liste Bos");
+                Console.WriteLine("Liste bos");
             else if (Index == 0)
                 RemoveFromFront();
             else if (Index == (count - 1))
@@ -137,13 +134,18 @@ namespace Veri_Yapıları_Listeler
 
         public void Show()
         {
-            Node Current = this.head;
-            for(int i = 0;i < count; i++)
+            if (IsEmpty())
+                Console.WriteLine("Liste bos");
+            else
             {
-                Console.Write("{0}: {1} {2}|",Current.ad,Current.vize,Current.final);
-                Current = Current.next;
+                Node Current = this.head;
+                for (int i = 0; i < count; i++)
+                {
+                    Console.Write("{0}: {1} {2}|", Current.ad, Current.vize, Current.final);
+                    Current = Current.next;
+                }
+                Console.WriteLine();
             }
-            Console.WriteLine();
         }
     }
     class Program
@@ -152,14 +154,35 @@ namespace Veri_Yapıları_Listeler
         {
             LinkedList List = new LinkedList();
 
-            Node N1 = new Node("Ali",90,70);
-            Node N2 = new Node("Veli", 30, 60);
-            Node N3 = new Node("Can", 40, 80);
+            Node N1 = new Node("Metin",90,70);
+            Node N2 = new Node("Umit", 30, 60);
+            Node N3 = new Node("Goktug", 40, 80);
+            Node N4 = new Node("Turkalp", 90, 70);
+            Node N5 = new Node("Ugur", 30, 60);
+            Node N6 = new Node("Kaan", 40, 80);
 
             List.InsertAtFront(N1);
+            List.Show();
+            List.InsertAtFront(N4);
+            List.Show();
+            List.InsertAtFront(N5);
+            List.Show();
             List.InsertAtBack(N2);
+            List.Show();
             List.InsertAt(N3,1);
             List.Show();
+
+            List.RemoveFromBack();
+            List.Show();
+            List.RemoveFromFront();
+            List.Show();
+            List.RemoveFrom(2);
+            List.Show();
+            List.RemoveFrom(1);
+            List.Show();
+            List.RemoveFromFront();
+            List.Show();
+
         }
     }
 }
