@@ -30,8 +30,10 @@ namespace Veri_Yapıları_Listeler
 
         public void InsertAtFront(Node N)
         {
-            if (IsEmpty())
-                head = tail = N;
+            if (IsEmpty()) {
+                head = N;
+                tail = N;
+            }
             else
             {
                 N.next = head;
@@ -42,8 +44,11 @@ namespace Veri_Yapıları_Listeler
 
         public void InsertAtBack(Node N)
         {
-            if (IsEmpty())
-                head = tail = N;
+            if (IsEmpty()) {
+                head = N;
+                tail = N;
+            }
+                
            /* else if (head.next == null)
             {
                 head.next = N;
@@ -51,7 +56,7 @@ namespace Veri_Yapıları_Listeler
             }*/
             else
             {
-                N.next = tail;
+                tail.next = N;
                 tail = N;
             }
             count++;
